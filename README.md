@@ -1,9 +1,7 @@
 
 ## llama2.zig
 
-This is a Zig copycat version of [llama2.c](https://github.com/karpathy/llama2.c).
-
-Compiled with Zig 0.10.1.
+This is a Zig copycat version of [llama2.c](https://github.com/karpathy/llama2.c). Compiled with Zig 0.10.1.
 
 这是一个Zig山寨版llama2.c，仅供娱乐与学习，以下是抄袭的介绍：
 
@@ -11,9 +9,9 @@ Have you ever wanted to inference a baby [Llama 2](https://ai.meta.com/llama/) m
 
 <img src="assets/llama_cute.jpg" width="300" height="300">
 
-With the code in this repo you can train the Llama 2 LLM architecture from scratch in PyTorch, then export the weights to a binary file, and load that into one ~simple 5000-line Zig file ([run.zig](run.zig)) that inferences the model. Hence, this repo is a "fullstack" solution to custom, small LLMs. You might think that you need many billion parameter LLMs to do anything useful, but in fact very small LLMs can have surprisingly strong performance if you make the domain narrow enough. I recommend looking at the [TinyStories](https://huggingface.co/datasets/roneneldan/TinyStories) paper for inspiration.
+With the code in this repo you can train the Llama 2 LLM architecture from scratch in PyTorch, then export the weights to a binary file, and load that into one ~simple 5000-line Zig file ([run.zig](src/run.zig)) that inferences the model. Hence, this repo is a "fullstack" solution to custom, small LLMs. You might think that you need many billion parameter LLMs to do anything useful, but in fact very small LLMs can have surprisingly strong performance if you make the domain narrow enough. I recommend looking at the [TinyStories](https://huggingface.co/datasets/roneneldan/TinyStories) paper for inspiration.
 
-Please note that this started as just a fun weekend project: I took nanoGPT, tuned it to implement the Llama-2 architecture instead of GPT-2, and the meat of it was writing the C inference engine in [run.zig](run.zig). As such, this is not really meant to be a production-grade library right now.
+Please note that this started as just a fun weekend project: I took nanoGPT, tuned it to implement the Llama-2 architecture instead of GPT-2, and the meat of it was writing the Zig inference engine in [run.zig](src/run.zig). As such, this is not really meant to be a production-grade library right now.
 
 Hat tip to the awesome [llama.cpp](https://github.com/ggerganov/llama.cpp) for inspiring this project. I wanted something super minimal so I chose to hard-code the llama-2 architecture, stick to fp32, and just roll one inference file of pure Zig with no dependencies.
 
@@ -25,7 +23,7 @@ Let's just run a baby Llama 2 model in Zig. You need a model checkpoint. Downloa
 wget https://karpathy.ai/llama2c/model.bin -P out
 ```
 
-(if that doesn't work try [google drive](https://drive.google.com/file/d/1aTimLdx3JktDXxcHySNrZJOOk8Vb1qBR/view?usp=share_link)). Compile and run the C code:
+(if that doesn't work try [google drive](https://drive.google.com/file/d/1aTimLdx3JktDXxcHySNrZJOOk8Vb1qBR/view?usp=share_link)). Compile and run the Zig code:
 
 ```bash
 zig build-exe ./src/run.zig -O ReleaseFast
@@ -133,13 +131,10 @@ zig build -Drelease-fast=true
 - weird errors with torch.compile and wandb when using DDP
 - make more better tests to decrease yolo
 
-## ack
+## weixin
 
-I trained the llama2.c storyteller models on a 4X A100 40GB box graciously provided by the excellent [Lambda labs](https://lambdalabs.com/service/gpu-cloud), thank you.
+<img src="assets/weixin.jpg">
 
-## discord
-
-Figured it's possible to reuse my existing discord channel (that I use for my [zero to hero youtube series](https://karpathy.ai/zero-to-hero.html)), see #llama2c channel on [discord](https://discord.gg/3zy8kqD9Cp), for any quick questions, related discussions, etc.
 
 ## License
 
